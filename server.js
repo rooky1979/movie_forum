@@ -12,8 +12,17 @@ const app = express();
 //call DB connection
 connectDB();
 
+//initialise middleware
+app.use(express.json({ extended: false }));
+
 //single end point to test and send something to the browser
 app.get('/', (req, res) => res.send('API Running'));
+
+//define routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/discussions', require('./routes/api/discussions'));
 
 //setup the environment variable for local host or deployed server
 const PORT = process.env.PORT || 5000;
