@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   //not sure what to do about avatar at this point
+  //keep it as a gravatar until later
   avatar: {
     type: String,
   },
