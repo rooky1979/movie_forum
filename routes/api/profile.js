@@ -173,4 +173,9 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
+//route in here to get the info from a movie api? Or maybe in the actions
+//@route
+//@desc
+//@access
+
 module.exports = router;
