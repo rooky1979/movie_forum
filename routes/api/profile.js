@@ -2,6 +2,8 @@ const express = require('express');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const config = require('config');
+const axios = require('axios');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
@@ -174,8 +176,26 @@ router.delete('/', auth, async (req, res) => {
 });
 
 //route in here to get the info from a movie api? Or maybe in the actions
-//@route
-//@desc
-//@access
+//@route  GET /movies
+//@desc GET OMDB film info
+//@access Private
+
+router.get('/movies', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const films = Promise.all(
+      profile.favouritefilms.map((film) =>
+        axios.get(
+          `http://www.omdbapi.com/?t=${film}&apikey=${config.get('OMDBkey')}`
+        )
+      )
+    );
+    res.json(films);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
