@@ -105,4 +105,60 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+//@route    PUT api/discussions/like/:id
+//@desc     Like a discussion post
+//@access   Private
+
+router.put('/like/:id', auth, async (req, res) => {
+  try {
+    const discussion = await Discussion.findById(req.params.id);
+
+    if (
+      discussion.likes.filter((like) => like.user.toString() === req.user.id)
+        .length > 0
+    ) {
+      return res.status(400).json({ msg: 'Discussion already liked' });
+    }
+
+    //unshift pushes the like onto the array
+    discussion.likes.unshift({ user: req.user.id });
+
+    await discussion.save();
+    res.json(discussion.likes);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+//@route    PUT api/discussions/unlike/:id
+//@desc     Unlike a discussion post
+//@access   Private
+
+router.put('/unlike/:id', auth, async (req, res) => {
+  try {
+    const discussion = await Discussion.findById(req.params.id);
+
+    if (
+      discussion.likes.filter((like) => like.user.toString() === req.user.id)
+        .length === 0
+    ) {
+      return res.status(400).json({ msg: 'Discussion has not yet been liked' });
+    }
+
+    //find the index of the like
+    const removeIndex = discussion.likes
+      .map((like) => like.user.toString())
+      .indexOf(req.user.id);
+
+    discussion.likes.splice(removeIndex, 1);
+
+    await discussion.save();
+    res.json(discussion.likes);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
