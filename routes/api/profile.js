@@ -175,7 +175,6 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
-//route in here to get the info from a movie api? Or maybe in the actions
 //@route  GET /movies
 //@desc GET OMDB film info
 //@access Private
@@ -190,8 +189,7 @@ router.get('/movies', auth, async (req, res) => {
           `http://www.omdbapi.com/?t=${film}&apikey=${config.get('OMDBkey')}`
         )
       )
-    );
-    res.json(films);
+    ).then((films) => res.json(films.map((film) => film.data)));
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');

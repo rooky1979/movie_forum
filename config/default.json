@@ -1,5 +1,6 @@
  
 {
     "mongoURI": "mongodb+srv://matt123:matt123@stallsandcirclesforum.nkswf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "OMDBkey": "935a6d8c"
 }
