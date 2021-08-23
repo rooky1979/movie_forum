@@ -161,4 +161,76 @@ router.put('/unlike/:id', auth, async (req, res) => {
   }
 });
 
+//@route    Post api/discussions/comment/:id
+//@desc     Comment on a discussion
+//@access   Private
+
+router.post(
+  '/comment/:id',
+  [auth, [check('text', 'Text is required').not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+
+      const discussion = await Discussion.findById(req.params.id);
+
+      const newComment = {
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id,
+      };
+
+      discussion.comments.unshift(newComment);
+
+      await discussion.save();
+
+      res.json(discussion.comments);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+//@route    DELETE api/discussions/comment/:discussion_id/:comment_id
+//@desc     Delete a comment
+//@access   Private
+
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const discussion = await Discussion.findById(req.params.id);
+
+    const comment = discussion.comments.find(
+      (comment) => comment.id.toString() === req.params.comment_id
+    );
+    //check comment exists
+    if (!comment) {
+      return res.status(404).json({ msg: 'Comment does not exist' });
+    }
+    //check the user is the author of the comment
+    if (comment.user.toString() !== req.user.id) {
+      return res
+        .status(401)
+        .json({ msg: 'User not authorised to delete comment' });
+    }
+    const removeIndex = discussion.comments
+      .map((comment) => comment.id.toString())
+      .indexOf(req.params.comment_id);
+
+    discussion.comments.splice(removeIndex, 1);
+
+    await discussion.save();
+    res.json(discussion.comments);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

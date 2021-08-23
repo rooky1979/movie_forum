@@ -54,6 +54,7 @@ router.post(
     const {
       location,
       bio,
+      favouritecinema,
       favouritegenres,
       favouritefilms,
       favouritedirectors,
@@ -70,6 +71,7 @@ router.post(
     //check if the field has a value, if so set it to that value
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
+    if (favouritecinema) profileFields.favouritecinema = favouritecinema;
     //arrays are separated by a comma. The array is split and trimmed and added to the array
     if (favouritegenres) {
       profileFields.favouritegenres = favouritegenres

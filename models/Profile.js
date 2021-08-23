@@ -11,6 +11,9 @@ const ProfileSchema = mongoose.Schema({
   bio: {
     type: String,
   },
+  favouritecinema: {
+    type: String,
+  },
   favouritegenres: {
     type: [String],
   },
