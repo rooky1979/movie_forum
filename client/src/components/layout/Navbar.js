@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className='navbar bg-navbar'>
-      <h1 className='logo'>
+      <h1 className='logo navbar-font'>
         <Link to='/'>
           <i className='fas fa-film'></i> Stalls and Circles{' '}
         </Link>
       </h1>
-      <ul>
+      <ul className='navbar-font'>
         <li>
           <Link to='/register'>Register</Link>
         </li>
