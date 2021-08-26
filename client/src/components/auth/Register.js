@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +23,15 @@ const Register = () => {
     if (password !== password2) {
       dispatch(setAlert('Passwords do not match', 'danger'));
     } else {
-      console.log('SUCCESS');
+      dispatch(register({ name, email, password }));
     }
   };
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -40,7 +47,6 @@ const Register = () => {
             placeholder='Name'
             value={name}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         <div className='form-group'>
@@ -50,7 +56,6 @@ const Register = () => {
             value={email}
             onChange={(e) => onChange(e)}
             placeholder='Email'
-            required
           />
         </div>
         <div className='form-group'>
