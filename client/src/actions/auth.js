@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -72,6 +73,7 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      dispatch(loadUser());
     } catch (error) {
       const errors = error.response.data.errors;
 
@@ -85,5 +87,6 @@ export const login =
   };
 
 export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   dispatch({ type: LOGOUT });
 };
