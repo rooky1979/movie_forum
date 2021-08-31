@@ -17,9 +17,7 @@ const EditProfile = ({
       location: loading || !profile.location ? '' : profile.location,
       bio: loading || !profile.bio ? '' : profile.bio,
       favouritecinema:
-        loading || !profile.favouritecinema
-          ? ''
-          : profile.favouritecinema.join(', '),
+        loading || !profile.favouritecinema ? '' : profile.favouritecinema,
       favouritegenres:
         loading || !profile.favouritegenres
           ? ''
@@ -36,10 +34,10 @@ const EditProfile = ({
         loading || !profile.favouritedirectors
           ? ''
           : profile.favouritedirectors.join(', '),
-      youtube: loading || profile.social ? '' : profile.social.youtube,
-      facebook: loading || profile.social ? '' : profile.social.facebook,
-      twitter: loading || profile.social ? '' : profile.social.twitter,
-      instagram: loading || profile.social ? '' : profile.social.instagram,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      instagram: loading || !profile.social ? '' : profile.social.instagram,
     });
   }, [loading, getCurrentProfile]);
 
@@ -234,7 +232,7 @@ const EditProfile = ({
           </Fragment>
         )}
         <input type='submit' className='btn btn-primary my-1' />
-        <Link className='btn btn-light my-1' to='dashboard.html'>
+        <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
         </Link>
       </form>
