@@ -18,7 +18,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    dispatch(login(email, password));
   };
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -46,7 +46,7 @@ const Login = () => {
         </div>
         <div className='form-group'>
           <input
-            type='text'
+            type='password'
             name='password'
             value={password}
             onChange={(e) => onChange(e)}
