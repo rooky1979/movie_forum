@@ -198,6 +198,13 @@
 .round-img {
   border-radius: 50%;
 }
+
+.line {
+  height: 1px;
+  background: #ccc;
+  margin: 1.5rem 0;
+}
+
 .form-group {
   margin: 1.2rem 0;
 }
