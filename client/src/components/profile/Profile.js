@@ -9,6 +9,7 @@ import ProfileAbout from './ProfileAbout';
 import ProfileGenres from './ProfileGenres';
 import ProfileDirectors from './ProfileDirectors';
 import ProfileActors from './ProfileActors';
+import ProfileFilms from './ProfileFilms';
 
 const Profile = ({
   getProfileById,
@@ -41,6 +42,7 @@ const Profile = ({
             <ProfileGenres profile={profile} />
             <ProfileDirectors profile={profile} />
             <ProfileActors profile={profile} />
+            {/* <ProfileFilms profile={profile} /> */}
           </div>
         </Fragment>
       )}
