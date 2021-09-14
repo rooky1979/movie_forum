@@ -1,22 +1,22 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFilms } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
-const ProfileFilms = ({ profile: { favouriteFilms } }) => {
+const ProfileFilms = ({ getFilms, films }) => {
   useEffect(() => {
     getFilms();
   }, [getFilms]);
 
   return (
-    <div class='profile-films bg-light p-2'>
-      <h1 class='text-primary my-1'>Favourite Films</h1>
-      {favouriteFilms === null ? (
+    <div className='profile-films bg-light p-2'>
+      <h1 className='text-primary my-1'>Favourite Films</h1>
+      {films === null ? (
         <Spinner />
       ) : (
-        favouriteFilms.map((film) => (
-          <div key={film.imdbID} class='films'>
+        films.map((film, index) => (
+          <div key={index} className='films'>
             <div>
               <img src={film.Poster} alt={film.Title} />
               <p>
@@ -39,11 +39,11 @@ const ProfileFilms = ({ profile: { favouriteFilms } }) => {
 
 ProfileFilms.propTypes = {
   getFilms: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
+  films: state.profile.films,
 });
 
 export default connect(mapStateToProps, { getFilms })(ProfileFilms);
