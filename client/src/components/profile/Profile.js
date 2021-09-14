@@ -42,7 +42,7 @@ const Profile = ({
             <ProfileGenres profile={profile} />
             <ProfileDirectors profile={profile} />
             <ProfileActors profile={profile} />
-            {/* <ProfileFilms profile={profile} /> */}
+            <ProfileFilms profile={profile} />
           </div>
         </Fragment>
       )}
