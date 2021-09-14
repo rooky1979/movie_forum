@@ -72,8 +72,8 @@ export const getProfileById = (userId) => async (dispatch) => {
   }
 };
 
-export const getFilms = (films) => async (dispatch) => {
-  const res = await axios.get('/api/movies');
+export const getFilms = () => async (dispatch) => {
+  const res = await axios.get('/api/profile/movies');
 
   try {
     dispatch({
