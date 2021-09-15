@@ -9,27 +9,27 @@ const ProfileFilms = ({ getFilms, films }) => {
     getFilms();
   }, [getFilms]);
 
+  //issues: films not changing and looking at others profiles aren't changing over
+
   return (
     <div className='profile-films bg-light p-2'>
       <h1 className='text-primary my-1'>Favourite Films</h1>
+      <div className='films'></div>
       {films === null ? (
         <Spinner />
       ) : (
-        films.map((film, index) => (
-          <div key={index} className='films'>
-            <div>
-              <img src={film.Poster} alt={film.Title} />
-              <p>
-                <strong>
-                  {' '}
-                  {film.Title} ({film.Year})
-                </strong>
-              </p>
-              <p>
-                <strong>Director: </strong>
-                {film.Director}
-              </p>
-            </div>
+        films.map((film) => (
+          <div key={film.imdbID}>
+            <img src={film.Poster} alt={film.Title} />
+            <p>
+              <strong>
+                {film.Title} ({film.Year})
+              </strong>
+            </p>
+            <p>
+              <strong>Director: </strong>
+              {film.Director}
+            </p>
           </div>
         ))
       )}
