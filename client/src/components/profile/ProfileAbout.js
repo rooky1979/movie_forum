@@ -8,10 +8,10 @@ const ProfileAbout = ({
   },
 }) => {
   return (
-    <div class='profile-about bg-light p-2'>
+    <div className='profile-about bg-light p-2'>
       {bio && (
         <Fragment>
-          <h2 class='text-primary'>
+          <h2 className='text-primary'>
             {[name.trim().split(' ')[0].length - 1] === 's' ? (
               <span>{name.trim().split(' ')[0]}' Bio</span>
             ) : (

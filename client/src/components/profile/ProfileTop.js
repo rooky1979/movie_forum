@@ -10,56 +10,56 @@ const ProfileTop = ({
   },
 }) => {
   return (
-    <div class='profile-top bg-primary p-2'>
+    <div className='profile-top bg-primary p-2'>
       <img className='round-img my-1' src={avatar} alt='' />
-      <h1 class='large'>{name}</h1>
-      <p class='lead'>
+      <h1 className='large'>{name}</h1>
+      <p className='lead'>
         <strong>Location: </strong>
         {location}
       </p>
       <p>
         <strong>Favourite Theatre: </strong> {favouritecinema}{' '}
       </p>
-      <div class='icons my-1'>
+      <div className='icons my-1'>
         {social && social.youtube && (
           <a
-            class='bg-primary'
+            className='bg-primary'
             href={social.youtube}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <i class='fab fa-youtube fa-2x'></i>
+            <i className='fab fa-youtube fa-2x'></i>
           </a>
         )}
 
         {social && social.facebook && (
           <a
-            class='bg-primary'
+            className='bg-primary'
             href={social.facebook}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <i class='fab fa-facebook fa-2x'></i>
+            <i className='fab fa-facebook fa-2x'></i>
           </a>
         )}
         {social && social.twitter && (
           <a
-            class='bg-primary'
+            className='bg-primary'
             href={social.twitter}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <i class='fab fa-twitter fa-2x'></i>
+            <i className='fab fa-twitter fa-2x'></i>
           </a>
         )}
         {social && social.instagram && (
           <a
-            class='bg-primary'
+            className='bg-primary'
             href={social.instagram}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <i class='fab fa-instagram fa-2x'></i>
+            <i className='fab fa-instagram fa-2x'></i>
           </a>
         )}
       </div>

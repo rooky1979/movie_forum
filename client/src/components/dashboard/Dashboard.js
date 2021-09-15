@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
+import DashboardItem from './DashboardItem';
 
 const Dashboard = ({
   deleteAccount,
@@ -27,6 +28,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <DashboardItem profile={profile} />
           <div className=''>
             <button className='btn btn-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-alt-slash'></i> Delete Profile
