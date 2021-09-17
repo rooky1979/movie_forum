@@ -9,7 +9,7 @@ const ProfileFilms = ({ getFilms, films }) => {
     getFilms();
   }, [getFilms]);
 
-  //issues: films not changing and looking at others profiles aren't changing over
+  //issues: films not changing and looking at others profiles aren't changing over and dashboard is changing to 
 
   return (
     <div className='profile-films bg-light p-2'>

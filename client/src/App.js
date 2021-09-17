@@ -10,6 +10,7 @@ import Alert from './components/auth/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivateRoute from './routing/PrivateRoute';
 import CreateProfile from './components/profile-form/CreateProfile';
+import Discussions from './components/discussions/Discussions';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile-form/EditProfile';
 import Profiles from './components/profiles/Profiles';
@@ -51,6 +52,7 @@ const App = () => {
                 path='/edit-profile'
                 component={EditProfile}
               />
+              <PrivateRoute exact path='/discussions' component={Discussions} />
             </Switch>
           </section>
         </Fragment>
