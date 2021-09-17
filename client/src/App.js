@@ -13,6 +13,7 @@ import CreateProfile from './components/profile-form/CreateProfile';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile-form/EditProfile';
 import Profiles from './components/profiles/Profiles';
+import Discussions from './components/discussions/Discussions';
 //redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -51,6 +52,7 @@ const App = () => {
                 path='/edit-profile'
                 component={EditProfile}
               />
+              <PrivateRoute exact path='/discussions' component={Discussions} />
             </Switch>
           </section>
         </Fragment>
