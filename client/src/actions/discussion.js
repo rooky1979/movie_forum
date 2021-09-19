@@ -1,8 +1,15 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_DISCUSSIONS, DISCUSSION_ERROR } from './types';
+import {
+  GET_DISCUSSIONS,
+  DISCUSSION_ERROR,
+  UPDATE_LIKES,
+  DELETE_DISCUSSION,
+  ADD_DISCUSSION,
+  GET_DISCUSSION,
+} from './types';
 
-//GET discussions
+//GET all discussions
 export const getDiscussions = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/discussions');
@@ -11,6 +18,109 @@ export const getDiscussions = () => async (dispatch) => {
       type: GET_DISCUSSIONS,
       payload: res.data,
     });
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//GET a SINGLE discussion post
+export const getDiscussion = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/discussions/${id}`);
+
+    dispatch({
+      type: GET_DISCUSSION,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//LIKE a discussion post
+export const addLike = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/discussions/like/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//UNLIKE a discussion post
+export const removeLike = (id) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/discussions/unlike/${id}`);
+
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { id, likes: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//DELETE a discussion post
+export const deleteDiscussion = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/discussions/${id}`);
+
+    dispatch({
+      type: DELETE_DISCUSSION,
+      payload: id,
+    });
+    dispatch(setAlert('Discussion Removed', 'success'));
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//ADD a discussion post
+export const addDiscussion = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.post('/api/discussions', formData, config);
+
+    dispatch({
+      type: ADD_DISCUSSION,
+      payload: res.data,
+    });
+    dispatch(setAlert('Discussion Added', 'success'));
   } catch (error) {
     dispatch({
       type: DISCUSSION_ERROR,

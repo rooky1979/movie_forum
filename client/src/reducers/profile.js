@@ -38,8 +38,8 @@ export default function profile(state = initialState, action) {
       return {
         ...state,
         profile: null,
-        repos: [],
         loading: false,
+        films: [],
       };
     case GET_FILMS:
       return {

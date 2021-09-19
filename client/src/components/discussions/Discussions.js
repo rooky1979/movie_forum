@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getDiscussions } from '../../actions/discussion';
 import DiscussionItem from './DiscussionItem';
+import DiscussionForm from './DiscussionForm';
 
 const Discussions = ({
   getDiscussions,
@@ -16,10 +17,10 @@ const Discussions = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 class='large text-primary'>
-        <i class='fas fa-comments'></i> Discussion
+      <h1 className='large text-primary'>
+        <i className='fas fa-comments'></i> Discussion
       </h1>
-      <p class='lead'>Create or Join a Discussion!</p>
+      <p className='lead'>Create or Join a Discussion!</p>
       <p>
         <strong>Rules:</strong>
       </p>
@@ -41,10 +42,11 @@ const Discussions = ({
           set the world to rights so keep the politics and drama out of it!
         </strong>
       </p>
+      <DiscussionForm />
       <div className='posts'>
-        {discussions.map((discussion) => {
-          <DiscussionItem key={discussion._id} discussion={discussion} />;
-        })}
+        {discussions.map((discussion) => (
+          <DiscussionItem key={discussion._id} discussion={discussion} />
+        ))}
       </div>
     </Fragment>
   );

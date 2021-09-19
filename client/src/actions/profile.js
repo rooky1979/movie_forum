@@ -10,6 +10,7 @@ import {
 } from './types';
 
 export const getCurrentProfile = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   try {
     //request to the current profile
     const res = await axios.get('/api/profile/me');
