@@ -5,6 +5,8 @@ import {
   DELETE_DISCUSSION,
   ADD_DISCUSSION,
   GET_DISCUSSION,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
 } from '../actions/types';
 
 const initialState = {
@@ -60,7 +62,26 @@ export default function discussion(state = initialState, action) {
         ),
         loading: false,
       };
-
+    case ADD_COMMENT:
+      return {
+        ...state,
+        discussion: {
+          ...state.discussion,
+          comments: payload,
+        },
+        loading: false,
+      };
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        discussion: {
+          ...state.discussion,
+          comments: state.discussion.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+        },
+        loading: false,
+      };
     default:
       return state;
   }

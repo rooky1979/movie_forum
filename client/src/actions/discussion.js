@@ -7,6 +7,8 @@ import {
   DELETE_DISCUSSION,
   ADD_DISCUSSION,
   GET_DISCUSSION,
+  REMOVE_COMMENT,
+  ADD_COMMENT,
 } from './types';
 
 //GET all discussions
@@ -121,6 +123,56 @@ export const addDiscussion = (formData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(setAlert('Discussion Added', 'success'));
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//ADD a comment
+export const addComment = (discussionID, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      `/api/discussions/comment/${discussionID}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data,
+    });
+    dispatch(setAlert('Comment Added', 'success'));
+  } catch (error) {
+    dispatch({
+      type: DISCUSSION_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+//DELETE a comment
+export const deleteComment = (discussionID, commentID) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/discussions/comment/${discussionID}/${commentID}`);
+
+    dispatch({
+      type: REMOVE_COMMENT,
+      payload: commentID,
+    });
+    dispatch(setAlert('Comment Removed', 'success'));
   } catch (error) {
     dispatch({
       type: DISCUSSION_ERROR,

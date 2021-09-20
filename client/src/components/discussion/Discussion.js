@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getDiscussion } from '../../actions/discussion';
 import DiscussionItem from '../discussions/DiscussionItem';
+import CommentForm from './CommentForm';
+import CommentItem from './CommentItem';
 
 const Discussion = ({
   getDiscussion,
@@ -23,6 +25,16 @@ const Discussion = ({
         Back To Discussions
       </Link>
       <DiscussionItem discussion={discussion} showActions={false} />
+      <CommentForm discussionID={discussion._id} />
+      <div className='comments'>
+        {discussion.comments.map((comment) => (
+          <CommentItem
+            key={comment._id}
+            comment={comment}
+            discussionID={discussion._id}
+          />
+        ))}
+      </div>
     </Fragment>
   );
 };

@@ -20,3 +20,5 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const DELETE_DISCUSSION = 'DELETE_DISCUSSION';
 export const ADD_DISCUSSION = 'ADD_DISCUSSION';
 export const GET_DISCUSSION = 'GET_DISCUSSION'; //singular
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
