@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { getFilms } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
-const ProfileFilms = ({ getFilms, films }) => {
+const ProfileFilms = ({ getFilms, films, userId }) => {
   useEffect(() => {
-    getFilms();
-  }, [getFilms]);
+    getFilms(userId);
+  }, [getFilms, userId]);
 
-  //issues: films not changing and looking at others profiles aren't changing over and dashboard is changing to 
+  //issues: films not changing and looking at others profiles aren't changing over and dashboard is changing to
 
   return (
     <div className='profile-films bg-light p-2'>
@@ -40,6 +40,7 @@ const ProfileFilms = ({ getFilms, films }) => {
 ProfileFilms.propTypes = {
   getFilms: PropTypes.func.isRequired,
   films: PropTypes.array.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

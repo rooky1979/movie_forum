@@ -36,13 +36,13 @@ const Profile = ({
                 Edit Profile
               </Link>
             )}
-          <div class='profile-grid my-1'>
+          <div className='profile-grid my-1'>
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
             <ProfileGenres profile={profile} />
             <ProfileDirectors profile={profile} />
             <ProfileActors profile={profile} />
-            <ProfileFilms profile={profile} />
+            <ProfileFilms profile={profile} userId={match.params.id} />
           </div>
         </Fragment>
       )}

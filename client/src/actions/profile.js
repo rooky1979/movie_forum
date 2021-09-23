@@ -7,6 +7,7 @@ import {
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_ERROR,
+  CLEAR_FILMS,
 } from './types';
 
 export const getCurrentProfile = () => async (dispatch) => {
@@ -73,9 +74,9 @@ export const getProfileById = (userId) => async (dispatch) => {
   }
 };
 
-export const getFilms = () => async (dispatch) => {
-  const res = await axios.get('/api/profile/movies');
-
+export const getFilms = (userId) => async (dispatch) => {
+  const res = await axios.get(`/api/profile/movies/${userId}`);
+  dispatch({ type: CLEAR_FILMS });
   try {
     dispatch({
       type: GET_FILMS,

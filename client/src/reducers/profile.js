@@ -1,4 +1,5 @@
 import {
+  CLEAR_FILMS,
   CLEAR_PROFILE,
   GET_FILMS,
   GET_PROFILE,
@@ -45,6 +46,12 @@ export default function profile(state = initialState, action) {
       return {
         ...state,
         films: payload,
+        loading: false,
+      };
+    case CLEAR_FILMS:
+      return {
+        ...state,
+        films: [],
         loading: false,
       };
     default:

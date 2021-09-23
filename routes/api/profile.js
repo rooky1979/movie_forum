@@ -182,11 +182,11 @@ router.delete('/', auth, async (req, res) => {
 //@desc GET OMDB film info
 //@access Private
 
-router.get('/movies', auth, async (req, res) => {
+router.get('/movies/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.params.user_id });
 
-    const films = Promise.all(
+    Promise.all(
       profile.favouritefilms.map((film) =>
         axios.get(
           `http://www.omdbapi.com/?t=${film}&apikey=${config.get('OMDBkey')}`
