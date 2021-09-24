@@ -1,3 +1,4 @@
+//single discussion page with all the attached comments and comment form
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';

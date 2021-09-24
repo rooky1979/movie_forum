@@ -1,3 +1,4 @@
+//redux reducer for profile actions
 import {
   CLEAR_FILMS,
   CLEAR_PROFILE,

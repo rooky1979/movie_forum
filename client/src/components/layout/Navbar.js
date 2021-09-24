@@ -1,3 +1,4 @@
+//navbar component
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { logout } from '../../actions/auth';

@@ -1,3 +1,4 @@
+//profile page containing all the components of about, directors, actors, genres, films and the profile pic
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

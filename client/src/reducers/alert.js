@@ -1,3 +1,4 @@
+//redux reducer for alerts
 import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 
 const initialState = [];

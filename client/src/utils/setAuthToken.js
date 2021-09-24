@@ -1,3 +1,4 @@
+//middleware to use the JWT authentication token for the requests
 import axios from 'axios';
 
 const setAuthToken = (token) => {

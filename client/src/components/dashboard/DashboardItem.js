@@ -1,3 +1,4 @@
+//Dashboard Item component that shows a redacted version of the current user's profile
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';

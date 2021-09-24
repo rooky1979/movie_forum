@@ -1,3 +1,4 @@
+//redux recducer for the discussion posts
 import {
   GET_DISCUSSIONS,
   DISCUSSION_ERROR,

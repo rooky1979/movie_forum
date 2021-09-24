@@ -1,3 +1,4 @@
+//middleware to authenticate the JWT token and verify
 const jwt = require('jsonwebtoken');
 const config = require('config');
 

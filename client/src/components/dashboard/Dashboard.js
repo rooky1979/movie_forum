@@ -1,3 +1,5 @@
+//Dashboard page that contains the DashBoardActions and DashBoardItem components
+
 import React, { useEffect, Fragment } from 'react';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import PropTypes from 'prop-types';

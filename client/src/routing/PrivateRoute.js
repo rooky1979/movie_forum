@@ -1,3 +1,4 @@
+//private route component to redirect the user to certain pages depending if authenticated or not
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';

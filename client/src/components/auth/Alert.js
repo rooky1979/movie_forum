@@ -1,3 +1,4 @@
+//alert component to show messages (e.g. profile updated)
 import React from 'react';
 import { useSelector } from 'react-redux';
 

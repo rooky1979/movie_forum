@@ -1,3 +1,4 @@
+//redux action for the alerts (e.g. comment added, profile updated, etc)
 import { SET_ALERT, REMOVE_ALERT } from './types';
 import { v4 as uuid } from 'uuid';
 

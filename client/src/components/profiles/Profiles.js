@@ -1,3 +1,4 @@
+//displays all members profiles redacted using the profileItem component
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';

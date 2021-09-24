@@ -1,3 +1,5 @@
+//redux actions for all of the discussion posts, likes and comments
+
 import axios from 'axios';
 import { setAlert } from './alert';
 import {

@@ -1,3 +1,4 @@
+//redux reducer for user authentication
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,

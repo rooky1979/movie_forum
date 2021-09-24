@@ -1,3 +1,4 @@
+//discussion form component for the user to post a discussion
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addDiscussion } from '../../actions/discussion';

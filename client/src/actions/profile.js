@@ -1,3 +1,5 @@
+//redux actions for the user profile
+
 import axios from 'axios';
 import { setAlert } from './alert';
 import {
@@ -9,7 +11,7 @@ import {
   PROFILE_ERROR,
   CLEAR_FILMS,
 } from './types';
-
+//GET current logged in user profile
 export const getCurrentProfile = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
@@ -53,7 +55,7 @@ export const getProfiles = () => async (dispatch) => {
     });
   }
 };
-
+//GET a profile by user ID
 export const getProfileById = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
@@ -73,7 +75,7 @@ export const getProfileById = (userId) => async (dispatch) => {
     });
   }
 };
-
+//GET the favourite films from the OMDB API by user ID
 export const getFilms = (userId) => async (dispatch) => {
   const res = await axios.get(`/api/profile/movies/${userId}`);
   dispatch({ type: CLEAR_FILMS });
@@ -93,7 +95,7 @@ export const getFilms = (userId) => async (dispatch) => {
     });
   }
 };
-
+//CREATE a new profile
 export const createProfile =
   (formData, history, edit = false) =>
   async (dispatch) => {
@@ -132,7 +134,7 @@ export const createProfile =
       });
     }
   };
-
+//DELETE the logged in user account
 export const deleteAccount = () => async (dispatch) => {
   //alert the user to confirm if they want to delete the account
   if (

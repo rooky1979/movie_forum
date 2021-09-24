@@ -1,3 +1,4 @@
+//Spinner component when items or pages are loading
 import React, { Fragment } from 'react';
 import spinner from './spinner.gif';
 
